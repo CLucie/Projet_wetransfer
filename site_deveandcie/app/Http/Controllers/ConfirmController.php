@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller;
 use App\models\Transfers;
 
 class ConfirmController extends Controller
@@ -25,8 +26,8 @@ class ConfirmController extends Controller
         $transfer = Transfers::find($id_transfer);
         
         //procéder au téléchargement du fichier
-        return Storage::disk('upload')->download($transfer->file_name,$transfer->real_name);
-        dd('fin');
+        return response()->Storage::disk('upload')->download($transfer->file_name,$transfer->real_name);
+        
 
         //affichage du résultat
         return view('confirmdl');
